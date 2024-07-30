@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="bg-white text-black h-screen w-full px-20 font-[gilroy] select-none">
+        <nav class="py-6 flex justify-between">
+            <h1 class="font-semibold text-2xl">Khatabook</h1>
+            <a class="hover:text-blue-500 font-semibold" href="/">Go to Home</a>
+        </nav>
+        <h1 class="py-6 font-semibold text-2xl">Create New Hisaab</h1>
+        <form action="/create" method="post" class="w-1/2 h-1/2">
+            <input type="text" placeholder="Title" name="title" class="w-4/5 bg-zinc-100 border-2 border-zinc-200 px-3 py-2 mb-6 rounded-md outline-none">
+            <textarea name="desc" placeholder="Expense Description" class="h-2/3 w-full bg-zinc-100 border-2 border-zinc-200 px-3 py-2 rounded-md outline-none resize-none mb-3"></textarea>
+            <div class="grid grid-rows-2 grid-cols-2 gap-1 mb-6">
+                <label class="flex items-center cursor-pointer gap-1 w-fit">
+                    <input type="checkbox" name="encrypt" id="encrypt" class="sr-only peer" />
+                    <div
+                      class="scale-75 relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"
+                    ></div>
+                    <span class="text-zinc-500">Encrypt this file</span>
+                  </label>
+                  <label class="flex items-center cursor-pointer gap-1 w-fit">
+                    <input type="checkbox" name="canshare" id="canshare" class="sr-only peer" />
+                    <div
+                      class="scale-75 relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"
+                    ></div>
+                    <span class="text-zinc-500">Shareable file?</span>
+                  </label>
+                  <label for="passcode" class="opacity-40">
+                    <input disabled type="password" placeholder="Passcode" name="passcode" id="passcode" class="bg-zinc-100 border-2 border-zinc-200 px-3 py-2 rounded-md outline-none w-48 tracking-widest placeholder:tracking-normal">
+                  </label>
+                  <label class="flex items-center cursor-pointer gap-1 w-fit opacity-40">
+                    <input disabled type="checkbox" name="canedit" id="canedit" class="sr-only peer" />
+                    <div
+                      class="scale-75 relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"
+                    ></div>
+                    <span class="text-zinc-500">Edit permissions.</span>
+                  </label>
+            </div>
+            <input type="submit" value="Create New Hisaab" class="px-6 py-2 bg-blue-500 mt-3 text-white rounded-md hover:bg-blue-600 cursor-pointer">
+        </form>
+    </div>
+    <script src="/javascripts/utility.js"></script>
+</body>
+</html>

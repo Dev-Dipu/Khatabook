@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/utility.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class=" h-screen w-full px-20 font-[gilroy] select-none flex flex-col">
+      <nav class="flex justify-between items-center py-6">
+        <h1 class="font-semibold text-2xl">Khatabook</h1>
+        <div class="n-right font-semibold flex items-center gap-6">
+          
+          <a class="hover:text-blue-500" href="/create">Create New Hisaab</a>
+          <a class="hover:text-red-500" href="/logout">Logout</a>
+          <div class="tdnn cursor-pointer">
+            <div class="moon"></div>
+          </div>
+        </div>
+      </nav>
+      <div class="filters py-6 flex items-center gap-6">
+        <h1
+          class="w-fit px-6 py-2 bg-zinc-100 text-zinc-500 rounded-md flex gap-2 hover:bg-zinc-200/60">Filters <i class="ri-sound-module-fill"></i>
+        </h1>
+        <div
+          class="h-10 w-fit flex items-center px-6 py-2 bg-zinc-100 text-zinc-500 rounded-md relative transition-all duration-500 hover:bg-zinc-200/60"
+        >
+          <input
+            type="text"
+            id="date"
+            name="date"
+            placeholder="Sort by Date"
+            class="w-[116px] focus:w-[124px] outline-none bg-transparent placeholder:text-zinc-500 peer"
+            onfocus="(this.type='date')"
+            onblur="(this.type='text')"
+          />
+          <i
+            class="ri-calendar-todo-fill peer-focus:hidden absolute right-4 text-zinc-500 -translate-x-[6px]"
+          ></i>
+        </div>
+        <div
+          class="h-10 w-fit flex items-center px-6 py-2 bg-zinc-100 text-zinc-500 rounded-md relative hover:bg-zinc-200/60"
+        >
+          <select name="order" id="order" class="bg-transparent outline-none">
+            <option value="new">Newest First</option>
+            <option value="old">Oldest First</option>
+          </select>
+        </div>
+        
+      </div>
+      <div class="paymentnotes py-6 flex flex-wrap gap-6 overflow-y-auto">
+        <% hisaabs.forEach(hisaab => { %>
+          <div class="note h-fit w-[440px] bg-zinc-100 hover:bg-zinc-200/60 px-6 py-3 rounded-md">
+            <div class="flex items-center justify-between">
+              <div class="flex gap-3">
+                <% if (hisaab.encrypt) { %>
+                  <h1 class="px-3 py-1 rounded-md w-fit bg-blue-500 text-white text-sm"><i class="ri-lock-2-line"></i> Encrypted</h1>
+                <% } else { %>
+                  <h1 class="px-3 py-1 rounded-md w-fit bg-green-500 text-white text-sm"><i class="ri-check-line font-semibold"></i> Available</h1>
+                <% } %>
+                <% if (!hisaab.canshare) { %>
+                  <h2 class=" px-3 py-1 rounded-md w-fit bg-zinc-200 text-sm"><i class="ri-eye-off-line"></i></h2>
+                <% } %>
+              </div>
+              <h1 class="text-sm text-zinc-400">Created on <%= hisaab.created.toLocaleDateString('en-GB').replace(/\//g, '-') %></h1>
+            </div>
+            <h1 class="text-xl font-semibold py-3"><%= hisaab.title %></h1>
+            <a class="text-zinc-400 text-sm" href="/view/<%= hisaab._id %>">view hisaab</a>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+    <script>
+      document.querySelector('.tdnn').addEventListener('click', function () {
+        document.querySelector('body').classList.toggle('light');
+        document.querySelector('.moon').classList.toggle('sun');
+        document.querySelector('.tdnn').classList.toggle('day');
+      });
+    </script>
+    <script src="/javascripts/utility.js"></script>
+  </body>
+</html>

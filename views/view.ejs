@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <div
+            class="h-screen w-full px-20 font-[gilroy] select-none flex flex-col"
+        >
+            <nav class="flex justify-between items-center py-6">
+                <h1 class="font-semibold text-2xl">Khatabook</h1>
+                <div class="n-right font-semibold flex items-center gap-6">
+                    <a class="hover:text-blue-500" href="/">Go to Home</a>
+                    <% if (hisaab.isowner || hisaab.canedit) { %>
+                    <a
+                        class="hover:text-blue-500"
+                        href="/edit/<%= hisaab._id %>"
+                        >Edit Hisaab</a
+                    >
+                    <% } %>
+                </div>
+            </nav>
+            <div class="options pt-6 pb-4 flex items-center gap-6">
+                <div class="flex gap-3">
+                    <% if (!hisaab.isowner) { %>
+                    <h1
+                        class="px-3 py-1 rounded-md w-fit bg-yellow-500 text-white text-sm"
+                    >
+                    <i class="ri-share-line"></i> Shared
+                    </h1>
+                    <% } else if (hisaab.encrypt) { %>
+                    <h1
+                        class="px-3 py-1 rounded-md w-fit bg-blue-500 text-white text-sm"
+                    >
+                        <i class="ri-lock-2-line"></i> Encrypted
+                    </h1>
+                    <% } else { %>
+                    <h1
+                        class="px-3 py-1 rounded-md w-fit bg-green-500 text-white text-sm"
+                    >
+                        <i class="ri-check-line font-semibold"></i> Available
+                    </h1>
+                    <% } %> <% if (!hisaab.canshare) { %>
+                    <h2 class="px-3 py-1 rounded-md w-fit bg-zinc-200 text-sm">
+                        <i class="ri-eye-off-line"></i>
+                    </h2>
+                    <% } else { %>
+                    <h2 class="px-3 py-1 rounded-md w-fit bg-zinc-200 text-sm">
+                        <i class="ri-eye-2-line"></i>
+                    </h2>
+                    <% } %>
+                </div>
+                <% if (hisaab.isowner) { %> <% if (hisaab.canshare) { %>
+                <div class="relative">
+                    <span
+                        class="active:text-blue-500 flex gap-1 cursor-pointer"
+                        id="share"
+                    >
+                        <i class="ri-share-line"></i>
+                        <h1 class="font-semibold">Share as link</h1>
+                    </span>
+                    <form
+                        action="/share/<%= hisaab._id %>"
+                        method="post"
+                        class="shareform absolute top-[160%] w-[180%] h-8 hidden"
+                    >
+                        <input
+                            type="text"
+                            name="recipient"
+                            placeholder="Recipient's email"
+                            class="bg-zinc-50 w-full border-2 border-zinc-200 px-2 py-1 rounded-md outline-none text-sm pr-8 focus:border-blue-500"
+                        />
+                        <button
+                            class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded-md absolute right-0 top-1/2 -translate-y-1/2 scale-75 active:scale-[.72]"
+                            type="submit"
+                        >
+                            <i class="ri-share-forward-fill"></i>
+                        </button>
+                    </form>
+                </div>
+                <% } %>
+                <form action="/delete/<%= hisaab._id %>" method="post">
+                    <button
+                        type="submit"
+                        class="px-3 py-1 rounded-md w-fit bg-red-500 hover:bg-red-600 text-white text-sm cursor-pointer active:scale-[.98]"
+                    >
+                        Delete
+                    </button>
+                </form>
+                <% } %>
+            </div>
+            <h1 class="text-sm text-zinc-400">
+                Created on <%=
+                hisaab.created.toLocaleDateString('en-GB').replace(/\//g, '-')
+                %>
+            </h1>
+            <h1 class="text-xl font-semibold pt-6 pb-4"><%= hisaab.title %></h1>
+            <p class="w-2/5 leading-[18px]"><%= hisaab.desc %></p>
+        </div>
+        <script src="/javascripts/utility.js"></script>
+    </body>
+</html>

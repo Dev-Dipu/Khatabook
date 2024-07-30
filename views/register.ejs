@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class=" h-screen w-full px-20 font-[gilroy] select-none flex flex-col">
+        <nav class="flex justify-between items-center py-6">
+            <h1 class="font-semibold text-2xl">Khatabook</h1>
+            <div class="n-right font-semibold flex items-center gap-6">
+              <a class="hover:text-blue-500" href="/login">Already have an account?</a>
+              <div class="tdnn cursor-pointer">
+                <div class="moon"></div>
+              </div>
+            </div>
+        </nav>
+        <div class=" flex-grow flex flex-col items-center ">
+            <h1 class="py-6 mt-20 font-semibold text-2xl">Create New Account</h1>
+            <form action="/register" method="post" class="flex flex-col gap-3">
+                <input type="text" name="name" placeholder="Nickname" class="bg-zinc-50 border-2 border-zinc-200 px-3 py-2 rounded-md outline-none w-60">
+                <input type="email" name="email" placeholder="Email" class="bg-zinc-50 border-2 border-zinc-200 px-3 py-2 rounded-md outline-none w-60">
+                <input type="password" name="password" placeholder="Password" class="bg-zinc-50 border-2 border-zinc-200 px-3 py-2 rounded-md outline-none w-60 tracking-widest placeholder:tracking-normal">
+                <input type="submit" value="Register" class="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer">
+            </form>
+            <h1 class="font-semibold leading-none py-2 px-3 rounded-md bg-green-400 text-white mt-14">😅 Some Features are in Working</h1>
+        </div>
+    </div>
+  </body>
+</html>
