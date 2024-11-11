@@ -1,0 +1,2 @@
+Debuggers: (app:, mongo:)
+  command - $env:DEBUG = "app: mongo:"

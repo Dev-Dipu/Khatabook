@@ -231,6 +231,7 @@ app.post("/login", async (req, res) => {
 
 app.get("/logout", isLogin, cleanup, (req, res) => {
     res.clearCookie("authtoken");
+    debuglog("Logged out successfully");
     res.redirect("/login");
 });
 
